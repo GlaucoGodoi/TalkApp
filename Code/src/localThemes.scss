@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+	@include mat-core();
+	
+
+.confidence-theme {
+	$confidence-primary: mat-palette($mat-teal,500);
+	$confidence-accent:  mat-palette($mat-yellow, 700);
+	$confidence-warn: mat-palette($mat-red, 400);
+	
+	$confidence-theme: mat-light-theme($confidence-primary, $confidence-accent, $confidence-warn);
+	
+	@include angular-material-theme($confidence-theme);
+}

@@ -1,0 +1,51 @@
+<div id="root-div" fxFlexFill fxLayout="row nowrap" fxLayoutAlign="center center">
+
+  <mat-card fxFlex class="mat-elevation-z12" fxFlex.lt-sm="100%" fxFlex.gt-sm="40">
+    <mat-card-header>
+      <mat-card-title>Register your expenses</mat-card-title>
+      <mat-card-subtitle>Please inform the reason and the amout of the expense</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content [formGroup]="expenseForm" fxLayout="column nowrap">
+
+      <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-around center" formControlName="selectedLanguage">
+        <mat-radio-button name="langRadio" value="pt-BR" class="radio-lang">Português</mat-radio-button>
+        <mat-radio-button name="langRadio" value="en-US" class="radio-lang">English</mat-radio-button>
+        <mat-radio-button name="langRadio" value="fr-FR">Français</mat-radio-button>
+      </mat-radio-group>
+
+      <div fxLayout="row nowrap" fxLayoutAlign="space-around center" class="input-with-voice">
+        <mat-form-field fxFlexFill  appearance="outline">
+          <mat-label>Reason</mat-label>
+          <textarea id="{{reasonFieldName}}" formControlName="reason" matInput placeholder="Where and why this expense was made"></textarea>
+          <mat-icon matSuffix>receipt</mat-icon>
+          <mat-hint>The reason for this expense</mat-hint>
+        </mat-form-field>
+
+        <button mat-mini-fab (click)="toggleListening(reasonFieldName)" color="{{ListeningReason?'accent':'primary'}}" *ngIf="speech.SupportRecognition">
+          <mat-icon matSuffix>microphone</mat-icon>
+        </button>
+      </div>
+
+      <div fxLayout="row nowrap" fxLayoutAlign="space-around center" class="input-with-voice">
+        <mat-form-field fxFlexFill appearance="outline">
+          <mat-label>Amount</mat-label>
+          <input inputmode="numeric" id="{{amountFieldName}}" formControlName="amount" type="number" matInput placeholder="Full amount" class="only-numbers" >
+          <mat-icon matSuffix>monetization_on</mat-icon>
+          <mat-hint>The full amount spent including tips and other values</mat-hint>
+        </mat-form-field>
+
+        <button mat-mini-fab (click)="toggleListening(amountFieldName)" color="{{ListeningAmount?'accent':'primary'}}" *ngIf="speech.SupportRecognition">
+          <mat-icon matSuffix>microphone</mat-icon>
+        </button>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button color="accent" mat-button (click)="clearCard()">Cancel</button>
+      <button [disabled]="expenseForm.invalid" color="primary" mat-raised-button (click)="saveExpense()">Save</button>
+    </mat-card-actions>
+    <mat-card-footer class="footer-holder">
+      <a href="http://www.project18.co" target="_blank"><span class="mat mat-caption">Project18</span></a>
+    </mat-card-footer>
+  </mat-card>
+</div>

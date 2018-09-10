@@ -1,0 +1,13 @@
+#root-div{
+    background-color:white; padding: 5px;
+}
+
+.input-with-voice{
+    margin: 5px;
+}
+
+.radio-lang{
+    margin-right: 8px
+}
+
+.only-numbers{ text-align:right }
